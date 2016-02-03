@@ -1,0 +1,33 @@
+{
+  "name": "gametrade",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Benjamin Huang <coolconfucius@yahoo.com>",
+    "Alicia Poindexter <alcampbel@gmail.com>"
+  ],
+  "engines": {
+    "node": "4.2.4"
+  },
+  "scripts": {
+    "setup": "npm i && bower i",
+    "start": "node ./bin/www",
+    "postinstall": "bower i"
+  },
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://github.com/CoolConfucius/20160128_1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/bower_components"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "firebase": "^2.4.0",
+    "bootswatch-dist": "darkly"
+  }
+}
