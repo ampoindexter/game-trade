@@ -1,4 +1,4 @@
-# Item Swap
+# GAME TRADE
 
 ## By Benjamin Huang and Alicia Poindexter
 
