@@ -2,5 +2,4 @@ body:not(nav) {
   background-image: url('http://site-macgasm.s3.amazonaws.com/wp-content/uploads/2012/04/space-invaders.jpg');
   background-size: 100%;
   z-index: -50;
-  /*color: #0f0;*/
 }

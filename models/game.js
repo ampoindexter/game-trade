@@ -7,15 +7,13 @@ var Game;
 
 var gameSchema = new mongoose.Schema({
   title: { type: String },
-  publisher: { type: String }, 
+  publisher: { type: String },
+  platform: { type: String },
   rating: { type: String },
   imageURL:{ type:String },
-  canTrade: { type: Boolean, default: true},
-  // user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
-  // userEmail: { type: String }
+  canTrade: { type: Boolean, default: true}
 })
 
 Game = mongoose.model('Game', gameSchema);
 
 module.exports = Game;
-});

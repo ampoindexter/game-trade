@@ -4,9 +4,25 @@ block styles
   link(rel="stylesheet", href="css/index.css")
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container#list
+    if games
+      if (state==='games')
+        .row
+          .col-xs-2 Title
+          .col-xs-2 Publisher
+          .col-xs-2 Rating
+          //- .col-xs-2 Status
+          hr  
+        each game in games 
+          .row.game
+            .col-xs-2.title= game.title
+            .col-xs-2.publisher= game.publisher
+            .col-xs-2.rating= game.rating
+            btn.col-xs-2.btn.btn-primary.btn-sm.showGame(data-gameId=game._id, data-userId=game.userId) Show Game
+        hr
+  if user
+    a#addGame.btn.btn-success(href='/addGame')  Add a Game 
 
 block scripts
-  script(src='bower_components/firebase/firebase.js')
-  script(src="js/index.js")
+  script(src='/bower_components/firebase/firebase.js')
+  script(src="/js/index.js")

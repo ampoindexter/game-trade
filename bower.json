@@ -28,6 +28,7 @@
   "dependencies": {
     "jquery": "^2.2.0",
     "firebase": "^2.4.0",
-    "bootswatch-dist": "darkly"
+    "bootswatch-dist": "darkly",
+    "sweetalert": "^1.1.3"
   }
 }

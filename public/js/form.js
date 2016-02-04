@@ -3,35 +3,62 @@
 var obj = {}; 
 
 $(function() {
-  obj.email = $('#email');
-  obj.password = $('#password');
-  obj.password2 = $('#password2');
-
-  obj.state = $('#go').hasClass('register') ? 'register' : 'login';
+  var $go = $('#go');
   
+  if ($go.hasClass('changepassword')){
+    obj.state = 'changepassword'
+  } else {
+    obj.state = $go.hasClass('register') ? 'register' : 'login';
+  }
+  
+  if (obj.state === 'login') {
+    $('#forgot').click(resetpassword); 
+  };
   $('form').on('submit', go);
 });
 
 function go(e) {
   e.preventDefault();
+  obj.email = $('#email').val();
+  obj.password = $('#password').val();
+  obj.password2 = $('#password2').val();
+  obj.newpassword = $('#newpassword').val();
 
-  var email = obj.email.val();
-  var password = obj.password.val();
-  var password2 = obj.password2.val();
-
-  if(obj.state === 'register' && password !== password2) {
-    $('.password').val('');
-    return alert('Passwords must match.');
+  if(obj.state === 'register' && obj.password !== obj.password2) {
+    $('#password').val('');
+    $('#password2').val('');
+    return swal('Passwords must match.');
   }
 
-  obj.url = obj.state === "register" ? '/users/register' : '/users/login'; 
+  if (obj.state === "changepassword") {
+    obj.url = '/users/changepassword'; 
+  } else {
+    obj.url = obj.state === "register" ? '/users/register' : '/users/login'; 
+  }
 
-  $.post(obj.url, {email: email, password: password})
+  $.post(obj.url, {email: obj.email, password: obj.password, newpassword: obj.newpassword})
   .success(function() {
     location.href = obj.state === "register" ? '/login' : '/';
   })
   .fail(function(err) {
-    alert('Error.  Check console.');
+    swal('Error.  Check console.');
+    console.log('err:', err);
+  });
+}
+
+function resetpassword(e) {
+  e.preventDefault();
+  obj.email = $('#email').val();
+  if (!obj.email) {
+    swal("Enter your email first"); 
+    return; 
+  };
+  $.post('/users/resetpassword', {email: obj.email})
+  .success(function() {
+    location.href = '/login';
+  })
+  .fail(function(err) {
+    swal('Error.  Check console.');
     console.log('err:', err);
   });
 }
