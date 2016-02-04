@@ -33,7 +33,6 @@ router.get('/', function(req, res, next) {
   .exec(function(err, trades){
     if(err) return res.status(400).send(err); 
     res.render('trades', {trades:trades, state:'trades', user:req.user});
-    // res.send(trades)
   });
 });
 
